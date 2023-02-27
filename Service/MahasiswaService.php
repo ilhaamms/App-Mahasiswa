@@ -110,7 +110,14 @@ namespace Service{
                     echo "\n";
                     $changeName = InputHelper::input("Nama Baru : ");
                     $this->mahasiswaRepository->change($changeName, $name);
+                    
                     echo "\nData Berhasil Diubah" . PHP_EOL;
+                    $question = InputHelper::input("Ubah Data Lagi (Y/N) ? ");
+                    if($question == "y" || $question == "Y"){
+                        $this->changeMahasiswa();
+                    }else{
+                        echo "Ubah Data Dibatalkan" . PHP_EOL;
+                    }
                 }else{
                     echo "Ubah Data Dibatalkan" . PHP_EOL;
                 }
