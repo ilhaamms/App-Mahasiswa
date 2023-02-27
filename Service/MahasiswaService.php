@@ -59,7 +59,7 @@ namespace Service{
                 echo "==============" . PHP_EOL;
                 echo "Nama : " . $mhs->getName() . PHP_EOL;
     
-                $question = InputHelper::input("\nHapus Data (Y/N) ?");
+                $question = InputHelper::input("Hapus Data (Y/N) ? ");
                 if($question == "y" || $question == "Y"){
                     $this->mahasiswaRepository->remove($name);
                     echo "\nData Berhasil Dihapus" . PHP_EOL;
@@ -68,6 +68,10 @@ namespace Service{
                 }
             }else{
                 echo "\nData Tidak Ditemukan" . PHP_EOL;
+                $question = InputHelper::input("Coba Hapus Data Mahasiswa Lagi (Y/N) ? ");
+                if($question == "y" || $question == "Y"){
+                    $this->searchMahasiswa();
+                }
             }
 
         }
@@ -101,9 +105,10 @@ namespace Service{
                 echo "==============" . PHP_EOL;
                 echo "Nama : " . $mhs->getName() . PHP_EOL;
     
-                $question = InputHelper::input("\nUbah Data (Y/N) ?");
+                $question = InputHelper::input("Ubah Data (Y/N) ? ");
                 if($question == "y" || $question == "Y"){
-                    $changeName = InputHelper::input("\n\nNama Baru : ");
+                    echo "\n";
+                    $changeName = InputHelper::input("Nama Baru : ");
                     $this->mahasiswaRepository->change($changeName, $name);
                     echo "\nData Berhasil Diubah" . PHP_EOL;
                 }else{
@@ -111,11 +116,16 @@ namespace Service{
                 }
             }else{
                 echo "\nData Tidak Ditemukan" . PHP_EOL;
+                $question = InputHelper::input("Coba Ubah Data Mahasiswa Lagi (Y/N) ? ");
+                if($question == "y" || $question == "Y"){
+                    $this->searchMahasiswa();
+                }
             }
         }
 
         public function searchMahasiswa(): void{
 
+            echo "\n";
             $name = InputHelper::input("Nama Mahasiswa : ");
             $mahasiswa = $this->mahasiswaRepository->findAll();          
             
@@ -133,9 +143,16 @@ namespace Service{
                 echo "Nama   : " . $mhs->getName() . PHP_EOL;
                 echo "Addres : " . $mhs->getAddres() . PHP_EOL;
                 echo "Email  : " . $mhs->getEmail() . PHP_EOL;
-                echo "\n";
+                $question = InputHelper::input("Cari Data Mahasiswa Lagi (Y/N) ? ");
+                if($question == "y" || $question == "Y"){
+                    $this->searchMahasiswa();
+                }
             }else{
                 echo "\nData Tidak Ditemukan" . PHP_EOL;
+                $question = InputHelper::input("Cari Data Mahasiswa Lagi (Y/N) ? ");
+                if($question == "y" || $question == "Y"){
+                    $this->searchMahasiswa();
+                }
             }
         }
         

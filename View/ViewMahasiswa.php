@@ -13,9 +13,14 @@ namespace View{
             $this->mahasiswaService = $mahasiswaService;
         }
 
+        function clearScreen(){
+            print("\033[2J\033[;H");
+        }
+
         public function menu(){
             while(true){
 
+                $this->clearScreen();
                 $this->findAllMahasiswa();
 
                 echo "Menu Mahasiswa" . PHP_EOL;
@@ -26,12 +31,16 @@ namespace View{
     
                 $menu = readline("[-] Menu Pilihan : ");
                 if($menu == 1){
+                    $this->clearScreen();
                     $this->addMahasiswa();
                 }elseif($menu == 2){
+                    $this->clearScreen();
                     $this->removeMahasiswa();
                 }elseif($menu == 3){
+                    $this->clearScreen();
                     $this->changeMahasiswa();
                 }else if($menu == 4){
+                    $this->clearScreen();
                     $this->searchMahasiswa();
                 }else{
                     echo "Menu Tidak Ada" . PHP_EOL;
